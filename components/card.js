@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgMediaCard({ id, title, content, image }) {
+export default function ImgMediaCard({ id, title, content, url, image }) {
   const classes = useStyles();
   const [upvote, setUpvote] = usePersistedState("upvoteState" + id, false);
   const [downvote, setDownvote] = usePersistedState(
@@ -62,6 +62,15 @@ export default function ImgMediaCard({ id, title, content, image }) {
         </Button>
         <Button onClick={handleDownvote}>
           <ThumbDownIcon color={downvote ? "primary" : "action"} />
+        </Button>
+        <Button
+          target="_blank"
+          rel="noopener"
+          variant="contained"
+          href={url}
+          color="primary"
+        >
+          Go
         </Button>
       </CardActions>
     </Card>
