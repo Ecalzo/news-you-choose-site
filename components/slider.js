@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+// will need to revise 'value','label' mapping according to labelling schema
 const marks = [
 	{
 		value:0,
@@ -28,8 +29,6 @@ const marks = [
 	},
 ];
 
-
-
 export default function DiscreteSlider({ onChange }) {
   const classes = useStyles();
 
@@ -40,12 +39,11 @@ export default function DiscreteSlider({ onChange }) {
       </Typography>
       <Slider
         defaultValue={4}
-	aria-labelledby="discrete-slider-small-steps"
-        step={1}
+        step={null}
         marks={marks}
         min={0}
         max={4}
-        valueLabelDisplay="auto"
+        valueLabelDisplay="off"
 	track={false}
         onChange={onChange}
       />
