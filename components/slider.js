@@ -13,6 +13,23 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+const marks = [
+	{
+		value:0,
+		label:'NEGATIVE',
+	},
+	{
+		value:2,
+		label:'NEUTRAL',
+	},
+	{
+		value:4,
+		label:'POSITIVE',
+	},
+];
+
+
+
 export default function DiscreteSlider({ onChange }) {
   const classes = useStyles();
 
@@ -22,13 +39,14 @@ export default function DiscreteSlider({ onChange }) {
         Sentiment Score
       </Typography>
       <Slider
-        defaultValue={5}
-        aria-labelledby="discrete-slider-small-steps"
+        defaultValue={4}
+	aria-labelledby="discrete-slider-small-steps"
         step={1}
-        marks
+        marks={marks}
         min={0}
-        max={10}
+        max={4}
         valueLabelDisplay="auto"
+	track={false}
         onChange={onChange}
       />
     </div>
