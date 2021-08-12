@@ -13,6 +13,22 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+// will need to revise 'value','label' mapping according to labelling schema
+const marks = [
+	{
+		value:0,
+		label:'NEGATIVE',
+	},
+	{
+		value:2,
+		label:'NEUTRAL',
+	},
+	{
+		value:4,
+		label:'POSITIVE',
+	},
+];
+
 export default function DiscreteSlider({ onChange }) {
   const classes = useStyles();
 
@@ -22,13 +38,13 @@ export default function DiscreteSlider({ onChange }) {
         Sentiment Score
       </Typography>
       <Slider
-        defaultValue={5}
-        aria-labelledby="discrete-slider-small-steps"
-        step={1}
-        marks
+        defaultValue={4}
+        step={null}
+        marks={marks}
         min={0}
-        max={10}
-        valueLabelDisplay="auto"
+        max={4}
+        valueLabelDisplay="off"
+	track={false}
         onChange={onChange}
       />
     </div>
