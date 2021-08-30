@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) =>
     grid: {
       backgroundColor: theme.palette.background.secondary,
       borderRadius: theme.shape.borderRadius,
+      border: theme.common.border,
       padding: theme.spacing(5),
     },
   })

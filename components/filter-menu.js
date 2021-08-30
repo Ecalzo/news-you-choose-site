@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     height: "6em",
     display: "flex",
     backgroundColor: theme.palette.background.secondary,
+    border: theme.common.border,
     borderRadius: theme.shape.borderRadius,
     padding: theme.spacing(1),
   },
