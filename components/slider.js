@@ -15,18 +15,18 @@ const useStyles = makeStyles((theme) =>
 
 // will need to revise 'value','label' mapping according to labelling schema
 const marks = [
-	{
-		value:0,
-		label:'NEGATIVE',
-	},
-	{
-		value:2,
-		label:'NEUTRAL',
-	},
-	{
-		value:4,
-		label:'POSITIVE',
-	},
+  {
+    value: 0,
+    label: "NEGATIVE",
+  },
+  {
+    value: 2,
+    label: "NEUTRAL",
+  },
+  {
+    value: 4,
+    label: "POSITIVE",
+  },
 ];
 
 export default function DiscreteSlider({ onChange }) {
@@ -44,7 +44,7 @@ export default function DiscreteSlider({ onChange }) {
         min={0}
         max={4}
         valueLabelDisplay="off"
-	track={false}
+        track={false}
         onChange={onChange}
       />
     </div>
