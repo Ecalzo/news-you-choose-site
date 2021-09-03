@@ -60,7 +60,11 @@ export default function ModelForm() {
                 .then((data) => {
                   console.log(data);
                   setScore(data.sentiment);
-                  setProbabilities(data.probabilities);
+                  setProbabilities(
+                    `[${Math.round(data.probabilities[0][0] * 100) / 100},  ${
+                      Math.round(data.probabilities[0][1] * 100) / 100
+                    }]`
+                  );
                 });
             }}
           >
