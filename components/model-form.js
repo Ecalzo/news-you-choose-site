@@ -58,7 +58,6 @@ export default function ModelForm() {
               })
                 .then((response) => response.json())
                 .then((data) => {
-                  console.log(data);
                   setScore(data.sentiment);
                   setProbabilities(
                     `[${Math.round(data.probabilities[0][0] * 100) / 100},  ${
