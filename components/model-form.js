@@ -36,19 +36,20 @@ export default function ModelForm() {
     <div>
       <Container className={classes.marginAutoContainer} maxWidth="md">
         <form className={classes.inputStyle}>
-          <TextInput onChange={(e) => setText(e.target.value)} />
+          <TextInput label="Text" onChange={(e) => setText(e.target.value)} />
           <Button
             variant="contained"
             color="primary"
             className={classes.buttonStyle}
             onClick={() => {
-              fetch(process.env.API_GATEWAY_URL, {
+              fetch(process.env.NEXT_PUBLIC_API_GATEWAY_URL, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
                 },
                 body: JSON.stringify({
-                  text: { text },
+                  text,
                 }),
               })
                 .then((response) => response.json())

@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 
-export default function TextInput() {
+export default function TextInput({ onChange }) {
   return (
     <>
       <TextField
@@ -12,6 +12,7 @@ export default function TextInput() {
         rows={4}
         defaultValue="This was a good article!"
         variant="outlined"
+        onChange={onChange}
       />
     </>
   );
