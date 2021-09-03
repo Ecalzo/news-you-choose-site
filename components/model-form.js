@@ -4,6 +4,7 @@ import TextOutput from "./text-output";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { ContactSupportOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   marginAutoContainer: {
@@ -29,14 +30,18 @@ const useStyles = makeStyles((theme) => ({
 export default function ModelForm() {
   const [score, setScore] = React.useState();
   const [probabilities, setProbabilities] = React.useState();
-  const [text, setText] = React.useState();
+  const [text, setText] = React.useState("This was a good article!");
 
   const classes = useStyles();
   return (
     <div>
       <Container className={classes.marginAutoContainer} maxWidth="md">
         <form className={classes.inputStyle}>
-          <TextInput label="Text" onChange={(e) => setText(e.target.value)} />
+          <TextInput
+            label="Text"
+            defaultValue={text}
+            onChange={(e) => setText(e.target.value)}
+          />
           <Button
             variant="contained"
             color="primary"
@@ -46,7 +51,6 @@ export default function ModelForm() {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
-                  "Access-Control-Allow-Origin": "*",
                 },
                 body: JSON.stringify({
                   text,
@@ -55,7 +59,7 @@ export default function ModelForm() {
                 .then((response) => response.json())
                 .then((data) => {
                   console.log(data);
-                  setScore(data.score);
+                  setScore(data.sentiment);
                   setProbabilities(data.probabilities);
                 });
             }}
