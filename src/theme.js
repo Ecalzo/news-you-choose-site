@@ -15,8 +15,11 @@ const theme = createTheme({
     },
     background: {
       default: "#fff",
-      secondary: "#F5F4F5",
+      secondary: "#fff",
     },
+  },
+  common: {
+    border: "1px solid #696969",
   },
 });
 
