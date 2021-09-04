@@ -9,7 +9,7 @@ export default function NavIcon({ title, href, children }) {
     <>
       <Typography>{title}: </Typography>
       <Link href={href} passHref>
-        <IconButton color={asPath === href ? "inherit" : "disabled"}>
+        <IconButton color={asPath === href ? "inherit" : "default"}>
           {children}
         </IconButton>
       </Link>
