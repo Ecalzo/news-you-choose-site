@@ -11,14 +11,11 @@ import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import IconButton from "@material-ui/core/IconButton";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import AlertDialog from "./alert-dialog";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
-  helpIcon: {
-    paddingLeft: theme.spacing(9),
-  },
+  root: {},
+  helpIcon: {},
 }));
 
 export default function ImgMediaCard({
@@ -79,15 +76,26 @@ export default function ImgMediaCard({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <IconButton onClick={handleUpvote}>
-          <ThumbUpIcon color={upvote ? "primary" : "action"} />
-        </IconButton>
-        <IconButton onClick={handleDownvote}>
-          <ThumbDownIcon color={downvote ? "primary" : "action"} />
-        </IconButton>
-        <div className={classes.helpIcon}>
-          <AlertDialog />
-        </div>
+        <Grid container spacing={2}>
+          <Grid item md={3} sm={3} xs={3}>
+            <IconButton onClick={handleUpvote}>
+              <ThumbUpIcon color={upvote ? "primary" : "action"} />
+            </IconButton>
+          </Grid>
+          <Grid item md={3} sm={3} xs={3}>
+            <IconButton onClick={handleDownvote}>
+              <ThumbDownIcon color={downvote ? "primary" : "action"} />
+            </IconButton>
+          </Grid>
+          <Grid item md={3} sm={3} xs={3}>
+            {" "}
+          </Grid>
+          <Grid item md={3} sm={3} xs={3}>
+            <div className={classes.helpIcon}>
+              <AlertDialog />
+            </div>
+          </Grid>
+        </Grid>
       </CardActions>
     </Card>
   );
