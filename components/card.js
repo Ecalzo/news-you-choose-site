@@ -21,6 +21,7 @@ export default function ImgMediaCard({
   title,
   content,
   url,
+  src,
   image_url,
   onError,
 }) {
@@ -56,11 +57,19 @@ export default function ImgMediaCard({
           onError={onError}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5">
             {title.length > 60 ? title.slice(0, 60) + "..." : title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography
+            gutterBottom
+            variant="body2"
+            color="textSecondary"
+            component="p"
+          >
             {content.length > 100 ? content.slice(0, 100) + "..." : content}
+          </Typography>
+          <Typography variant="body3">
+            {src.split(".").slice(-2)[0].toUpperCase()}
           </Typography>
         </CardContent>
       </CardActionArea>

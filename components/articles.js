@@ -50,6 +50,7 @@ export default function Articles({ articles }) {
                 title={article.title}
                 content={article.content}
                 url={article.url}
+                src={article.src}
                 image_url={
                   article.image_url ? article.image_url : url_map[article.src]
                 }
