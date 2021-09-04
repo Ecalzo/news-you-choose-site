@@ -40,28 +40,26 @@ export default function Articles({ articles }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Container className={classes.grid} maxWidth="lg">
-        <Grid container spacing={3}>
-          {articles.map((article) => (
-            <Grid item key={article.id} md={3} xs={6}>
-              <ImgMediaCard
-                id={article.id}
-                key={article.id}
-                title={article.title}
-                content={article.content}
-                url={article.url}
-                src={article.src}
-                image_url={
-                  article.image_url ? article.image_url : url_map[article.src]
-                }
-                onError={(e) => {
-                  e.target.src = url_map[article.src];
-                }}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+      <Grid container spacing={3} className={classes.grid}>
+        {articles.map((article) => (
+          <Grid item key={article.id} md={4} sm={6} xs={12}>
+            <ImgMediaCard
+              id={article.id}
+              key={article.id}
+              title={article.title}
+              content={article.content}
+              url={article.url}
+              src={article.src}
+              image_url={
+                article.image_url ? article.image_url : url_map[article.src]
+              }
+              onError={(e) => {
+                e.target.src = url_map[article.src];
+              }}
+            />
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 }
