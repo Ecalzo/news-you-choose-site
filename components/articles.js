@@ -1,10 +1,7 @@
 import React from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import ImgMediaCard from "./card";
-import { blue } from "@material-ui/core/colors";
-import Container from "@material-ui/core/Container";
 
 const url_map = {
   "http://nytimes.com": "https://g.foolcdn.com/art/companylogos/square/nyt.png",
@@ -20,12 +17,6 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-      padding: theme.spacing(5),
-    },
-    paper: {
-      padding: theme.spacing(1),
-      textAlign: "center",
-      color: theme.palette.text.secondary,
     },
     grid: {
       backgroundColor: theme.palette.background.secondary,

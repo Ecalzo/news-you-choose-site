@@ -70,7 +70,7 @@ export default function ImgMediaCard({
           >
             {content.length > 100 ? content.slice(0, 100) + "..." : content}
           </Typography>
-          <Typography variant="body3">
+          <Typography variant="body2">
             {src.split(".").slice(-2)[0].toUpperCase()}
           </Typography>
         </CardContent>

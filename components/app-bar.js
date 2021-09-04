@@ -23,7 +23,7 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static" color="transparent" elevation={0}>
         <Toolbar variant="dense">
-          <Typography variant="h6" className={classes.title}></Typography>
+          <Typography className={classes.title}></Typography>
           <NavIcon title="News" href="/">
             <BookIcon fontSize="large" />
           </NavIcon>
