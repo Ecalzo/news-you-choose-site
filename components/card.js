@@ -5,18 +5,21 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import IconButton from "@material-ui/core/IconButton";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import AlertDialog from "./alert-dialog";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
   },
-});
+  helpIcon: {
+    paddingLeft: theme.spacing(9),
+  },
+}));
 
 export default function ImgMediaCard({
   id,
@@ -74,15 +77,18 @@ export default function ImgMediaCard({
             {src.split(".").slice(-2)[0].toUpperCase()}
           </Typography>
         </CardContent>
-        <CardActions>
-          <IconButton onClick={handleUpvote}>
-            <ThumbUpIcon color={upvote ? "primary" : "action"} />
-          </IconButton>
-          <IconButton onClick={handleDownvote}>
-            <ThumbDownIcon color={downvote ? "primary" : "action"} />
-          </IconButton>
-        </CardActions>
       </CardActionArea>
+      <CardActions>
+        <IconButton onClick={handleUpvote}>
+          <ThumbUpIcon color={upvote ? "primary" : "action"} />
+        </IconButton>
+        <IconButton onClick={handleDownvote}>
+          <ThumbDownIcon color={downvote ? "primary" : "action"} />
+        </IconButton>
+        <div className={classes.helpIcon}>
+          <AlertDialog />
+        </div>
+      </CardActions>
     </Card>
   );
 
