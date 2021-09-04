@@ -38,15 +38,15 @@ export default function DiscreteSlider({ onChange }) {
       <Container maxWidth="sm">
         <Grid item key="sentiment-picker-title" md={12} xs={12}>
           <Typography
-            id="discrete-slider-small-steps"
+            id="discrete-slider-title"
             gutterBottom
-            variant="body1"
+            variant="h6"
             align="center"
           >
             Sentiment Score
           </Typography>
         </Grid>
-        <Grid item key="sentiment-slider" md={12} xs={12}>
+        <Grid item key="discrete-slider-selector" md={12} xs={12}>
           <div className={classes.root}>
             <Slider
               defaultValue={4}

@@ -5,15 +5,26 @@ import Typography from "@material-ui/core/Typography";
 import { getCurrentDate } from "../lib/get-current-date";
 import Grid from "@material-ui/core/Grid";
 
-const useStyles = makeStyles((theme) => createStyles({}));
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    title: {
+      marginBottom: theme.spacing(1),
+    },
+  })
+);
 
 export default function DatePicker({ onChange }) {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={2} className={classes.title}>
       <Grid item key="sentiment-picker-title" md={12} xs={12}>
-        <Typography id="date-picker-title" gutterBottom align="center">
+        <Typography
+          id="date-picker-title"
+          gutterBottom
+          align="center"
+          variant="h6"
+        >
           Article Date
         </Typography>
       </Grid>
