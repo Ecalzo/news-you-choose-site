@@ -16,7 +16,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgMediaCard({ id, title, content, url, image }) {
+export default function ImgMediaCard({
+  id,
+  title,
+  content,
+  url,
+  image_url,
+  onError,
+}) {
   const classes = useStyles();
   const [upvote, setUpvote] = usePersistedState("upvoteState" + id, false);
   const [downvote, setDownvote] = usePersistedState(
@@ -44,8 +51,9 @@ export default function ImgMediaCard({ id, title, content, url, image }) {
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image={image}
+          image={image_url}
           title="Contemplative Reptile"
+          onError={onError}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
