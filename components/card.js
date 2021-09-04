@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles({
   root: {
@@ -74,12 +75,12 @@ export default function ImgMediaCard({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button onClick={handleUpvote}>
+        <IconButton onClick={handleUpvote}>
           <ThumbUpIcon color={upvote ? "primary" : "action"} />
-        </Button>
-        <Button onClick={handleDownvote}>
+        </IconButton>
+        <IconButton onClick={handleDownvote}>
           <ThumbDownIcon color={downvote ? "primary" : "action"} />
-        </Button>
+        </IconButton>
         <Button
           target="_blank"
           rel="noopener"
