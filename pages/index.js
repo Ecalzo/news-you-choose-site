@@ -7,6 +7,7 @@ import Container from "@material-ui/core/Container";
 import Title from "../components/title";
 import { useArticles } from "../lib/swr-hooks";
 import { getCurrentDate } from "../lib/get-current-date";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   marginAutoContainer: {
@@ -31,8 +32,10 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Container>
-          <Title />
-          <FilterMenu />
+          <Grid container>
+            <Title />
+            <FilterMenu />
+          </Grid>
         </Container>
       </div>
     );
@@ -45,9 +48,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <Title />
-        <FilterMenu setSentiment={setSentiment} setDate={setDate} />
-        <Articles articles={articles} />
+        <Grid container spacing={5} alignContent="center">
+          <Grid item xs={12}>
+            <Title />
+          </Grid>
+          <Grid item xs={12}>
+            <FilterMenu setSentiment={setSentiment} setDate={setDate} />
+          </Grid>
+          <Grid item xs={12}>
+            <Articles articles={articles} />
+          </Grid>
+        </Grid>
       </Container>
     </div>
   );
