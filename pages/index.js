@@ -6,6 +6,7 @@ import FilterMenu from "../components/filter-menu";
 import Container from "@material-ui/core/Container";
 import Title from "../components/title";
 import { useArticles } from "../lib/swr-hooks";
+import { getCurrentDate } from "../lib/get-current-date";
 
 const useStyles = makeStyles((theme) => ({
   marginAutoContainer: {
@@ -16,9 +17,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Home() {
+  const currentDate = getCurrentDate();
   const classes = useStyles();
   const [sentiment, setSentiment] = React.useState(0);
-  const [date, setDate] = React.useState("2021-01-01");
+  const [date, setDate] = React.useState(currentDate);
   const { articles, isLoading } = useArticles({ sentiment, date });
 
   if (isLoading) {

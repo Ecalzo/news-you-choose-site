@@ -2,6 +2,7 @@ import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
+import { getCurrentDate } from "../lib/get-current-date";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -31,7 +32,7 @@ export default function DatePicker({ onChange }) {
       <TextField
         id="date"
         type="date"
-        defaultValue="2021-01-01"
+        defaultValue={getCurrentDate()}
         InputLabelProps={{
           shrink: true,
         }}
