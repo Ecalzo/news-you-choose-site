@@ -6,8 +6,12 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      marginLeft: theme.spacing(10),
+      marginTop: theme.spacing(0.7),
+      marginLeft: theme.spacing(15),
       width: "15em",
+    },
+    margin: {
+      marginLeft: theme.spacing(4),
     },
   })
 );
@@ -17,7 +21,11 @@ export default function DatePicker({ onChange }) {
 
   return (
     <div className={classes.root}>
-      <Typography id="discrete-slider-small-steps" gutterBottom>
+      <Typography
+        id="discrete-slider-small-steps"
+        gutterBottom
+        className={classes.margin}
+      >
         Article Date
       </Typography>
       <TextField

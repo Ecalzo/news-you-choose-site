@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) =>
       marginTop: theme.spacing(),
       width: "15em",
     },
+    margin: {
+      marginLeft: theme.spacing(6),
+    },
   })
 );
 
@@ -34,7 +37,11 @@ export default function DiscreteSlider({ onChange }) {
 
   return (
     <div className={classes.root}>
-      <Typography id="discrete-slider-small-steps" gutterBottom>
+      <Typography
+        id="discrete-slider-small-steps"
+        gutterBottom
+        className={classes.margin}
+      >
         Sentiment Score
       </Typography>
       <Slider
