@@ -18,8 +18,8 @@ export default function Title(props) {
   const classes = useStyles();
   return (
     <div className={classes.marginAutoItem}>
-      <Typography align="center" variant="h1">
-        News You Choose!
+      <Typography align="center" variant="h3">
+        News You Choose
       </Typography>
     </div>
   );
