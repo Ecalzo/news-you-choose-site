@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import IconButton from "@material-ui/core/IconButton";
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 
 const useStyles = makeStyles({
   root: {
@@ -48,7 +49,7 @@ export default function ImgMediaCard({
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea href={url} target="_blank" rel="noopener">
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
@@ -73,24 +74,15 @@ export default function ImgMediaCard({
             {src.split(".").slice(-2)[0].toUpperCase()}
           </Typography>
         </CardContent>
+        <CardActions>
+          <IconButton onClick={handleUpvote}>
+            <ThumbUpIcon color={upvote ? "primary" : "action"} />
+          </IconButton>
+          <IconButton onClick={handleDownvote}>
+            <ThumbDownIcon color={downvote ? "primary" : "action"} />
+          </IconButton>
+        </CardActions>
       </CardActionArea>
-      <CardActions>
-        <IconButton onClick={handleUpvote}>
-          <ThumbUpIcon color={upvote ? "primary" : "action"} />
-        </IconButton>
-        <IconButton onClick={handleDownvote}>
-          <ThumbDownIcon color={downvote ? "primary" : "action"} />
-        </IconButton>
-        <Button
-          target="_blank"
-          rel="noopener"
-          variant="contained"
-          href={url}
-          color="primary"
-        >
-          Go
-        </Button>
-      </CardActions>
     </Card>
   );
 
