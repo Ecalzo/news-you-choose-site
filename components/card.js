@@ -77,20 +77,20 @@ export default function ImgMediaCard({
       </CardActionArea>
       <CardActions>
         <Grid container spacing={2}>
-          <Grid item md={3} sm={3} xs={3}>
+          <Grid item md={2} sm={2} xs={3}>
             <IconButton onClick={handleUpvote}>
               <ThumbUpIcon color={upvote ? "primary" : "action"} />
             </IconButton>
           </Grid>
-          <Grid item md={3} sm={3} xs={3}>
+          <Grid item md={2} sm={2} xs={3}>
             <IconButton onClick={handleDownvote}>
               <ThumbDownIcon color={downvote ? "primary" : "action"} />
             </IconButton>
           </Grid>
-          <Grid item md={3} sm={3} xs={3}>
+          <Grid item md={6} sm={6} xs={3}>
             {" "}
           </Grid>
-          <Grid item md={3} sm={3} xs={3}>
+          <Grid item md={2} sm={2} xs={3}>
             <div className={classes.helpIcon}>
               <AlertDialog />
             </div>
