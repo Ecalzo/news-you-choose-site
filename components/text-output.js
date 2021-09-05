@@ -1,11 +1,11 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-export default function TextOutput({ score, probabilities }) {
+export default function TextOutput({ score, scoreText, probabilities }) {
   return (
     <>
       <Typography variant="h6" gutterBottom>
-        Sentiment Score: {score}
+        Sentiment Score: {score} {scoreText ? `(${scoreText})` : ""}
       </Typography>
       <Typography variant="h6" gutterBottom>
         Probabilities: {probabilities}
