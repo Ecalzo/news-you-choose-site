@@ -5,7 +5,7 @@ export default function CardSkeleton() {
     <div className="card-skeleton">
       <Skeleton variant="rect" width={300} height={200} />
       <Skeleton variant="text" width={300} />
-      <Skeleton width="60%" />
+      <Skeleton variant="text" width={150} />
     </div>
   );
 }
