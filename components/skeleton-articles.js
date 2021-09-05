@@ -23,7 +23,7 @@ export default function SkeletonArticles({ articles }) {
     <div className={classes.root}>
       <Grid container spacing={3} className={classes.grid}>
         {articles.map((article) => (
-          <Grid item md={4} sm={6} xs={12}>
+          <Grid key={article.id} item md={4} sm={6} xs={12}>
             <CardSkeleton key={article.id} />
           </Grid>
         ))}
