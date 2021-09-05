@@ -8,6 +8,8 @@ import Title from "../components/title";
 import { useArticles } from "../lib/swr-hooks";
 import { getCurrentDate } from "../lib/get-current-date";
 import Grid from "@material-ui/core/Grid";
+import SkeletonArticles from "../components/skeleton-articles";
+import { getSkeleArticles } from "../lib/create-skele-articles";
 
 const useStyles = makeStyles((theme) => ({
   marginAutoContainer: {
@@ -32,9 +34,16 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Container>
-          <Grid container>
-            <Title />
-            <FilterMenu />
+          <Grid container spacing={5} alignContent="center">
+            <Grid item xs={12}>
+              <Title />
+            </Grid>
+            <Grid item xs={12}>
+              <FilterMenu />
+            </Grid>
+            <Grid item xs={12}>
+              <SkeletonArticles articles={getSkeleArticles()} />
+            </Grid>
           </Grid>
         </Container>
       </div>
