@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Title from "../components/title";
 import ModelForm from "../components/model-form";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   marginAutoContainer: {
@@ -21,8 +22,14 @@ export default function Query() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <Title />
-        <ModelForm />
+        <Grid container spacing={5} alignContent="center">
+          <Grid item xs={12}>
+            <Title />
+          </Grid>
+          <Grid item xs={12}>
+            <ModelForm />
+          </Grid>
+        </Grid>
       </Container>
     </div>
   );

@@ -5,18 +5,28 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
+import IconButton from "@material-ui/core/IconButton";
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import AlertDialog from "./alert-dialog";
+import Grid from "@material-ui/core/Grid";
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-});
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  helpIcon: {},
+}));
 
-export default function ImgMediaCard({ id, title, content, url, image }) {
+export default function ImgMediaCard({
+  id,
+  title,
+  content,
+  url,
+  src,
+  image_url,
+  onError,
+}) {
   const classes = useStyles();
   const [upvote, setUpvote] = usePersistedState("upvoteState" + id, false);
   const [downvote, setDownvote] = usePersistedState(
@@ -39,39 +49,53 @@ export default function ImgMediaCard({ id, title, content, url, image }) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea href={url} target="_blank" rel="noopener">
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image={image}
+          image={image_url}
           title="Contemplative Reptile"
+          onError={onError}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5">
             {title.length > 60 ? title.slice(0, 60) + "..." : title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography
+            gutterBottom
+            variant="body2"
+            color="textSecondary"
+            component="p"
+          >
             {content.length > 100 ? content.slice(0, 100) + "..." : content}
+          </Typography>
+          <Typography variant="body2">
+            {src.split(".").slice(-2)[0].toUpperCase()}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button onClick={handleUpvote}>
-          <ThumbUpIcon color={upvote ? "primary" : "action"} />
-        </Button>
-        <Button onClick={handleDownvote}>
-          <ThumbDownIcon color={downvote ? "primary" : "action"} />
-        </Button>
-        <Button
-          target="_blank"
-          rel="noopener"
-          variant="contained"
-          href={url}
-          color="primary"
-        >
-          Go
-        </Button>
+        <Grid container spacing={2}>
+          <Grid item md={2} sm={2} xs={3}>
+            <IconButton onClick={handleUpvote}>
+              <ThumbUpIcon color={upvote ? "primary" : "action"} />
+            </IconButton>
+          </Grid>
+          <Grid item md={2} sm={2} xs={3}>
+            <IconButton onClick={handleDownvote}>
+              <ThumbDownIcon color={downvote ? "primary" : "action"} />
+            </IconButton>
+          </Grid>
+          <Grid item md={6} sm={6} xs={3}>
+            {" "}
+          </Grid>
+          <Grid item md={2} sm={2} xs={3}>
+            <div className={classes.helpIcon}>
+              <AlertDialog />
+            </div>
+          </Grid>
+        </Grid>
       </CardActions>
     </Card>
   );

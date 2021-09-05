@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
   },
   marginAutoItem: {
-    padding: theme.spacing(5),
+    padding: theme.spacing(2),
     margin: "auto",
   },
 }));
@@ -18,8 +18,8 @@ export default function Title(props) {
   const classes = useStyles();
   return (
     <div className={classes.marginAutoItem}>
-      <Typography align="center" variant="h1">
-        News You Choose!
+      <Typography align="center" variant="h2">
+        News You Choose
       </Typography>
     </div>
   );

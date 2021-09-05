@@ -8,7 +8,6 @@ import { ContactSupportOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   marginAutoContainer: {
-    width: "40em",
     backgroundColor: theme.palette.background.secondary,
     borderRadius: theme.shape.borderRadius,
     border: theme.common.border,
