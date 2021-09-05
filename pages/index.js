@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
   const currentDate = getCurrentDate();
   const classes = useStyles();
-  const [sentiment, setSentiment] = React.useState(4);
+  const [sentiment, setSentiment] = React.useState(1);
   const [date, setDate] = React.useState(currentDate);
   const { articles, isLoading } = useArticles({ sentiment, date });
 

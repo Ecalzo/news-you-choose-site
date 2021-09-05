@@ -21,11 +21,11 @@ const marks = [
     label: "NEGATIVE",
   },
   {
-    value: 2,
+    value: 1,
     label: "NEUTRAL",
   },
   {
-    value: 4,
+    value: 2,
     label: "POSITIVE",
   },
 ];
@@ -49,11 +49,11 @@ export default function DiscreteSlider({ onChange }) {
         <Grid item key="discrete-slider-selector" md={12} xs={12}>
           <div className={classes.root}>
             <Slider
-              defaultValue={4}
+              defaultValue={1}
               step={null}
               marks={marks}
               min={0}
-              max={4}
+              max={2}
               valueLabelDisplay="off"
               track={false}
               onChange={onChange}
