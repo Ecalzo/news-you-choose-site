@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ModelForm() {
   const [score, setScore] = React.useState();
+  const [scoreText, setScoreText] = React.useState();
   const [probabilities, setProbabilities] = React.useState();
   const [text, setText] = React.useState("This was a good article!");
 
@@ -57,11 +58,13 @@ export default function ModelForm() {
               })
                 .then((response) => response.json())
                 .then((data) => {
+                  console.log(data);
                   setScore(data.sentiment);
+                  setScoreText(data.sentiment_text);
                   setProbabilities(
-                    `[${Math.round(data.probabilities[0][0] * 100) / 100},  ${
-                      Math.round(data.probabilities[0][1] * 100) / 100
-                    }]`
+                    `[${Math.round(data.probabilities[0] * 100) / 100},  ${
+                      Math.round(data.probabilities[1] * 100) / 100
+                    }, ${Math.round(data.probabilities[2] * 100) / 100}]`
                   );
                 });
             }}
@@ -70,7 +73,11 @@ export default function ModelForm() {
           </Button>
         </form>
         <div className={classes.textOutputStyle}>
-          <TextOutput score={score} probabilities={probabilities} />
+          <TextOutput
+            score={score}
+            scoreText={scoreText}
+            probabilities={probabilities}
+          />
         </div>
       </Container>
     </div>
