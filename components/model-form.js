@@ -31,6 +31,8 @@ export default function ModelForm() {
   const [scoreText, setScoreText] = React.useState();
   const [probabilities, setProbabilities] = React.useState();
   const [text, setText] = React.useState("This was a good article!");
+  const [showPie, setShowPie] = React.useState(false);
+  const [pieSlices, setPieSlices] = React.useState([1, 1, 1]);
 
   const classes = useStyles();
   return (
@@ -41,6 +43,7 @@ export default function ModelForm() {
             label="Text"
             defaultValue={text}
             onChange={(e) => setText(e.target.value)}
+            onChange={() => setShowPie(false)}
           />
           <Button
             variant="contained"
@@ -66,6 +69,8 @@ export default function ModelForm() {
                       Math.round(data.probabilities[1] * 100) / 100
                     }, ${Math.round(data.probabilities[2] * 100) / 100}]`
                   );
+                  setPieSlices(data.probabilities);
+                  setShowPie(true);
                 });
             }}
           >
@@ -79,6 +84,11 @@ export default function ModelForm() {
             probabilities={probabilities}
           />
         </div>
+        <Container maxWidth="sm">
+          <div>
+            {showPie === true ? <PieChart pieSlices={pieSlices} /> : null}
+          </div>
+        </Container>
       </Container>
     </div>
   );
