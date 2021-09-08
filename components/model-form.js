@@ -4,7 +4,7 @@ import TextOutput from "./text-output";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { ContactSupportOutlined } from "@material-ui/icons";
+import PieChart from "../components/pie-chart";
 
 const useStyles = makeStyles((theme) => ({
   marginAutoContainer: {
@@ -65,9 +65,13 @@ export default function ModelForm() {
                   setScore(data.sentiment);
                   setScoreText(data.sentiment_text);
                   setProbabilities(
-                    `[${Math.round(data.probabilities[0] * 100) / 100},  ${
-                      Math.round(data.probabilities[1] * 100) / 100
-                    }, ${Math.round(data.probabilities[2] * 100) / 100}]`
+                    `{NEGATIVE : ${
+                      Math.round(data.probabilities[0] * 100) / 100
+                    }, 
+                    NEUTRAL : ${Math.round(data.probabilities[1] * 100) / 100},
+                    POSITIVE : ${
+                      Math.round(data.probabilities[2] * 100) / 100
+                    }}`
                   );
                   setPieSlices(data.probabilities);
                   setShowPie(true);
