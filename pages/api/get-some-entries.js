@@ -17,7 +17,9 @@ const handler = async (req, res) => {
   SELECT id, title, content, src, url, sentiment, score, user_approve, user_disapprove, date, image_url
   FROM news
   WHERE sentiment = ?
-  AND date = ?
+  AND date > DATE_ADD(?, INTERVAL -7 DAY)
+  AND score > 90
+  LIMIT 20
   `,
       [sentiment, date]
     );
