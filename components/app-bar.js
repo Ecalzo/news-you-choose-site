@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import CreateIcon from "@material-ui/icons/Create";
 import InfoIcon from "@material-ui/icons/Info";
 import BookIcon from "@material-ui/icons/Book";
+import EqualizerIcon from "@material-ui/icons/Equalizer";
 import NavIcon from "./nav-icon";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +30,9 @@ export default function ButtonAppBar() {
           </NavIcon>
           <NavIcon title="API" href="/query">
             <CreateIcon fontSize="large" />
+          </NavIcon>
+          <NavIcon title="Statistics" href="/stats">
+            <EqualizerIcon fontSize="large" />
           </NavIcon>
           <NavIcon title="About" href="/about">
             <InfoIcon fontSize="large" />
