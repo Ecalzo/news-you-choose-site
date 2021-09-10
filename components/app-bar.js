@@ -31,7 +31,7 @@ export default function ButtonAppBar() {
           <NavIcon title="API" href="/query">
             <CreateIcon fontSize="large" />
           </NavIcon>
-          <NavIcon title="Statistics" href="/stats">
+          <NavIcon title="Stats" href="/stats">
             <EqualizerIcon fontSize="large" />
           </NavIcon>
           <NavIcon title="About" href="/about">

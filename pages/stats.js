@@ -4,10 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Title from "../components/title";
 import Grid from "@material-ui/core/Grid";
-import { useStats, useArticles } from "../lib/swr-hooks"
+import { useStats, useArticles } from "../lib/swr-hooks";
 import { getCurrentDate } from "../lib/get-current-date";
-import LineChart from "../components/line-chart"
-
+import LineChart from "../components/line-chart";
 
 const useStyles = makeStyles((theme) => ({
 	marginAutoContainer: {
@@ -19,9 +18,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Stats() {
 	const currentDate = getCurrentDate();
-	const [sentiment, setSentiment] = React.useState(1);
 	const [date, setDate] = React.useState(currentDate);
-	const { articles, isLoading } = useStats({date});
+	const { articles, isLoading } = useStats({ date });
 
 	if (isLoading) {
 		return (
@@ -35,14 +33,12 @@ export default function Stats() {
 						<Grid item xs={12}>
 							<Title />
 						</Grid>
-						<Container maxWidth="md">
-
-						</Container>
+						<Container maxWidth="md"></Container>
 					</Grid>
 				</Container>
 			</div>
-	);
-}
+		);
+	}
 
 	return (
 		<div>
@@ -55,11 +51,10 @@ export default function Stats() {
 					<Grid item xs={12}>
 						<Title />
 					</Grid>
-
 				</Grid>
 			</Container>
 			<Container maxWidth="md">
-				<LineChart articles={ articles } />
+				<LineChart articles={articles} />
 			</Container>
 		</div>
 	);

@@ -2,7 +2,7 @@ import { query } from "../../lib/db";
 
 const handler = async (req, res) => {
 	try {
-		const { negative, neutral, positive, date} = req.query;
+		const { negative, neutral, positive, date } = req.query;
 
 		if (!date) {
 			return res.status(400).json({ message: "`date` required" });
@@ -17,17 +17,17 @@ const handler = async (req, res) => {
 				date
 		FROM news
 
-		WHERE date > DATE_ADD(?, INTERVAL - 50 DAY)
+		WHERE date > DATE_ADD(?, INTERVAL - 20 DAY)
 
 		GROUP BY date
 		ORDER BY date
 		`;
-	
-	const results = await query(sqlQuery, [date]);
 
-	return res.json(results);
+		const results = await query(sqlQuery, [date]);
+
+		return res.json(results);
 	} catch (e) {
-		res.status(500).json({ message: e.message});
+		res.status(500).json({ message: e.message });
 	}
 };
 
