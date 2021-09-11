@@ -30,7 +30,9 @@ export default function ModelForm() {
   const [score, setScore] = React.useState();
   const [scoreText, setScoreText] = React.useState();
   const [probabilities, setProbabilities] = React.useState();
-  const [text, setText] = React.useState("This was a good article!");
+  const [text, setText] = React.useState(
+    "Good Samaritans Rescue 60 Cows From Hurricane Ida Floodwaters"
+  );
   const [showPie, setShowPie] = React.useState(false);
   const [pieSlices, setPieSlices] = React.useState([1, 1, 1]);
 
