@@ -28,8 +28,6 @@ export default function Home() {
   const [uuid, setUuid] = usePersistedState("uuid", uuidv4());
   const { articles, isLoading } = useArticles({ sentiment, date });
 
-  console.log(uuid);
-
   function usePersistedState(key, defaultValue) {
     let state, setState;
     if (typeof window !== "undefined") {
