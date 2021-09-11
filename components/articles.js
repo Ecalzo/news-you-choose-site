@@ -43,6 +43,7 @@ export default function Articles({ articles }) {
                 content={article.content}
                 url={article.url}
                 src={article.src}
+                date={article.date}
                 image_url={
                   article.image_url ? article.image_url : url_map[article.src]
                 }
