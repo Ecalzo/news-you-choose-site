@@ -25,8 +25,9 @@ export default function ImgMediaCard({
   content,
   url,
   src,
-  image_url,
   date,
+  image_url,
+  uuid,
   onError,
 }) {
   const classes = useStyles();
@@ -123,22 +124,18 @@ export default function ImgMediaCard({
   );
 
   async function deleteExistingVotes() {
-    let state_id;
     if (upvote) {
-      state_id = "upvoteState" + id;
-      await fetch(`/api/delete-vote?state_id=${state_id}`, {
+      await fetch(`/api/delete-vote?uuid=${uuid}&article_id=${id}`, {
         method: "DELETE",
       });
       setUpvote(false);
     } else if (downvote) {
-      state_id = "downvoteState" + id;
-      await fetch(`/api/delete-vote?state_id=${state_id}`, {
+      await fetch(`/api/delete-vote?uuid=${uuid}&article_id=${id}`, {
         method: "DELETE",
       });
       setDownvote(false);
     } else if (neutvote) {
-      state_id = "neutvoteState" + id;
-      await fetch(`/api/delete-vote?state_id=${state_id}`, {
+      await fetch(`/api/delete-vote?uuid=${uuid}&article_id=${id}`, {
         method: "DELETE",
       });
       setNeutvote(false);
@@ -149,7 +146,6 @@ export default function ImgMediaCard({
     if (upvote || downvote || neutvote) {
       await deleteExistingVotes();
     }
-    const state_id = "upvoteState" + id;
     // perform the upvote
     try {
       const res = await fetch("/api/create-vote", {
@@ -158,7 +154,7 @@ export default function ImgMediaCard({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          state_id: state_id,
+          uuid: uuid,
           article_id: id,
           sentiment: 2, // positive
         }),
@@ -178,7 +174,6 @@ export default function ImgMediaCard({
     if (upvote || downvote || neutvote) {
       await deleteExistingVotes();
     }
-    const state_id = "downvoteState" + id;
     // perform the downvote
     try {
       const res = await fetch("/api/create-vote", {
@@ -187,7 +182,7 @@ export default function ImgMediaCard({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          state_id: state_id,
+          uuid: uuid,
           article_id: id,
           sentiment: 0, // negative
         }),
@@ -207,7 +202,6 @@ export default function ImgMediaCard({
     if (upvote || downvote || neutvote) {
       await deleteExistingVotes();
     }
-    const state_id = "neutvoteState" + id;
     // perform the neutral vote
     try {
       const res = await fetch("/api/create-vote", {
@@ -216,7 +210,7 @@ export default function ImgMediaCard({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          state_id: state_id,
+          uuid: uuid,
           article_id: id,
           sentiment: 1, // neutral
         }),
