@@ -43,7 +43,6 @@ export default function ModelForm() {
             label="Text"
             defaultValue={text}
             onChange={(e) => setText(e.target.value)}
-            onChange={() => setShowPie(false)}
           />
           <Button
             variant="contained"
