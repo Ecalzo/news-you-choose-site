@@ -20,6 +20,7 @@ const handler = async (req, res) => {
     WHERE sentiment = ?
     AND date > DATE_ADD(?, INTERVAL -10 DAY)
     AND score > 60
+    ORDER BY date DESC
     LIMIT 20
     `;
     } else {
@@ -29,6 +30,7 @@ const handler = async (req, res) => {
       WHERE sentiment = ?
       AND date > DATE_ADD(?, INTERVAL -10 DAY)
       AND score > 85
+      ORDER BY date DESC
       LIMIT 20
       `;
     }
