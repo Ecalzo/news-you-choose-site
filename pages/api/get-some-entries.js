@@ -29,7 +29,7 @@ const handler = async (req, res) => {
       FROM news
       WHERE sentiment = ?
       AND date > DATE_ADD(?, INTERVAL -10 DAY)
-      AND score > 85
+      AND score > 95
       ORDER BY date DESC
       LIMIT 20
       `;
