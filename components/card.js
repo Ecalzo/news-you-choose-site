@@ -13,7 +13,6 @@ import AddIcon from "@material-ui/icons/Add";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import RemoveIcon from "@material-ui/icons/Remove";
 import Tooltip from "@material-ui/core/Tooltip";
-import { set } from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
