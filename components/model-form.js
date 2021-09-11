@@ -5,6 +5,7 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import PieChart from "../components/pie-chart";
+import CircularIndeterminate from "./circular-indeterminate";
 
 const useStyles = makeStyles((theme) => ({
   marginAutoContainer: {
@@ -35,6 +36,7 @@ export default function ModelForm() {
   );
   const [showPie, setShowPie] = React.useState(false);
   const [pieSlices, setPieSlices] = React.useState([1, 1, 1]);
+  const [loading, setLoading] = React.useState(false);
 
   const classes = useStyles();
   return (
@@ -51,6 +53,7 @@ export default function ModelForm() {
             color="primary"
             className={classes.buttonStyle}
             onClick={() => {
+              setLoading(true);
               fetch(process.env.NEXT_PUBLIC_API_GATEWAY_URL, {
                 method: "POST",
                 headers: {
@@ -74,6 +77,7 @@ export default function ModelForm() {
                       Math.round(data.probabilities[2] * 100) / 100
                     }}`
                   );
+                  setLoading(false);
                   setPieSlices(data.probabilities);
                   setShowPie(true);
                 });
@@ -83,15 +87,21 @@ export default function ModelForm() {
           </Button>
         </form>
         <div className={classes.textOutputStyle}>
-          <TextOutput
-            score={score}
-            scoreText={scoreText}
-            probabilities={probabilities}
-          />
+          {loading ? (
+            <CircularIndeterminate />
+          ) : (
+            <TextOutput
+              score={score}
+              scoreText={scoreText}
+              probabilities={probabilities}
+            />
+          )}
         </div>
         <Container maxWidth="sm">
           <div>
-            {showPie === true ? <PieChart pieSlices={pieSlices} /> : null}
+            {showPie === true && !loading ? (
+              <PieChart pieSlices={pieSlices} />
+            ) : null}
           </div>
         </Container>
       </Container>
