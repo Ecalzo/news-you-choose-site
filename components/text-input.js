@@ -6,7 +6,7 @@ export default function TextInput({ onChange, defaultValue }) {
     <>
       <TextField
         id="outlined-multiline-static"
-        label="Multiline"
+        label="Model Input"
         multiline
         fullWidth
         rows={4}
