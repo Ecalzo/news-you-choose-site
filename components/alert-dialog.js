@@ -35,10 +35,10 @@ export default function AlertDialog() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Help us fine tune the app by deciding if we predicted the correct
-            sentiment for this article. If we predicted the sentiment correctly,
-            click the thumbs up button. If we predicted the sentiment
-            incorrectly, click the thumbs down button.
+            Help us fine tune the app by telling us if you think this article
+            has a positive, negative, or neutral sentiment. Your votes could
+            help build one of the largest community-driven sentiment datasets
+            available!
           </DialogContentText>
         </DialogContent>
         <DialogActions>
