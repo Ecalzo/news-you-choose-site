@@ -33,7 +33,6 @@ export default function Stats() {
             <Grid item xs={12}>
               <Title />
             </Grid>
-            <Container maxWidth="md"></Container>
           </Grid>
         </Container>
       </div>
