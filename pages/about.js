@@ -73,7 +73,7 @@ export default function About() {
           ECR Repositories
         </Typography>
         <Grid item xs={12} className={classes.marginAutoContainer}>
-          <Typography gutterBottom variant="h6">
+          <Typography gutterBottom variant="h6" component="div">
             <ul>
               <li> news-you-choose</li>
               <ul>
