@@ -19,7 +19,7 @@ export default function BarChartVotes({ votes }) {
   };
   const data = {
     labels: ["Negative", "Neutral", "Positive"],
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     datasets: [
       {
         label: "# of votes",
@@ -41,7 +41,7 @@ export default function BarChartVotes({ votes }) {
 
   return (
     <div>
-      <Bar data={data} options={options} width={50} height={15} />
+      <Bar data={data} options={options} />
     </div>
   );
 }
