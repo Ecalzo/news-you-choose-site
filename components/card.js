@@ -110,10 +110,8 @@ export default function ImgMediaCard({
               </Tooltip>
             </IconButton>
           </Grid>
-          <Grid item md={4} sm={4} xs={0}>
-            {" "}
-          </Grid>
-          <Grid item md={2} sm={2} xs={3}>
+          <Grid item md={4} sm={4} xs={1}></Grid>
+          <Grid item md={2} sm={2} xs={2}>
             <div className={classes.helpIcon}>
               <AlertDialog />
             </div>
