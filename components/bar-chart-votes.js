@@ -41,7 +41,7 @@ export default function BarChartVotes({ votes }) {
 
   return (
     <div>
-      <Bar data={data} options={options} width={100} height={50} />
+      <Bar data={data} options={options} width={50} height={15} />
     </div>
   );
 }

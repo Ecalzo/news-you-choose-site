@@ -57,7 +57,7 @@ export default function LineChart({ articles }) {
 
   return (
     <div>
-      <Line data={data} options={options} width={100} height={50} />
+      <Line data={data} options={options} width={50} height={15} />
     </div>
   );
 }
