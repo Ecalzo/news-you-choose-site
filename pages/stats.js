@@ -29,11 +29,9 @@ export default function Stats() {
   const currentDate = getCurrentDate();
   const [date, setDate] = React.useState(currentDate);
   const { articles, isLoading } = useStats({ date });
-  const { votes, isVotesLoading } = useVotes({ date });
+  const { votes, isVotesLoading, isValidating, mutateFunc } = useVotes();
 
-  React.useEffect(() => {
-    const interval = setInterval(setDate, 1000, currentDate);
-  }, []);
+  setTimeout(mutateFunc, 5000);
 
   if (isLoading) {
     return (
@@ -78,7 +76,7 @@ export default function Stats() {
             <LineChart articles={articles} />
           </Grid>
           <Grid item xs={12} className={classes.grid}>
-            <LineChartVotes votes={votes} />
+            {isVotesLoading ? null : <LineChartVotes votes={votes} />}
           </Grid>
         </Grid>
       </Container>
