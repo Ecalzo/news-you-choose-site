@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) =>
       borderRadius: theme.shape.borderRadius,
       border: theme.common.border,
       padding: theme.spacing(1),
-      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(3),
     },
   })
 );
