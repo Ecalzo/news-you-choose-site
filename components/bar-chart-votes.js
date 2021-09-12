@@ -1,7 +1,7 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
-export default function LineChartVotes({ votes }) {
+export default function BarChartVotes({ votes }) {
   const options = {
     title: {
       display: true,

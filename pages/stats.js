@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import { useStats, useVotes } from "../lib/swr-hooks";
 import { getCurrentDate } from "../lib/get-current-date";
 import LineChart from "../components/line-chart";
-import LineChartVotes from "../components/line-chart-votes";
+import BarChartVotes from "../components/bar-chart-votes";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -76,7 +76,7 @@ export default function Stats() {
             <LineChart articles={articles} />
           </Grid>
           <Grid item xs={12} className={classes.grid}>
-            {isVotesLoading ? null : <LineChartVotes votes={votes} />}
+            {isVotesLoading ? null : <BarChartVotes votes={votes} />}
           </Grid>
         </Grid>
       </Container>
