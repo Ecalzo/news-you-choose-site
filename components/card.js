@@ -145,6 +145,10 @@ export default function ImgMediaCard({
   async function handleUpvote() {
     if (upvote || downvote || neutvote) {
       await deleteExistingVotes();
+      if (upvote) {
+        setUpvote(false);
+        return;
+      }
     }
     // perform the upvote
     try {
@@ -173,6 +177,10 @@ export default function ImgMediaCard({
   async function handleDownvote() {
     if (upvote || downvote || neutvote) {
       await deleteExistingVotes();
+      if (downvote) {
+        setDownvote(false);
+        return;
+      }
     }
     // perform the downvote
     try {
@@ -201,6 +209,10 @@ export default function ImgMediaCard({
   async function handleNeutvote() {
     if (upvote || downvote || neutvote) {
       await deleteExistingVotes();
+      if (neutvote) {
+        setNeutvote(false);
+        return;
+      }
     }
     // perform the neutral vote
     try {
