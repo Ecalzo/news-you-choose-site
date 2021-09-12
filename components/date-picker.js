@@ -17,15 +17,10 @@ export default function DatePicker({ onChange }) {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={2} className={classes.title}>
+    <Grid container spacing={0} className={classes.title}>
       <Grid item key="sentiment-picker-title" md={12} xs={12}>
-        <Typography
-          id="date-picker-title"
-          gutterBottom
-          align="center"
-          variant="h6"
-        >
-          Article Date
+        <Typography id="date-picker-title" align="center" variant="h6">
+          Start Date
         </Typography>
       </Grid>
       <Grid item key="date-picker-selector" md={12} xs={12} align="center">
@@ -39,6 +34,10 @@ export default function DatePicker({ onChange }) {
           onChange={onChange}
           className={classes.datePicker}
         />
+        <br />
+        <Typography variant="caption" align="center">
+          (We show articles for the past 10 days)
+        </Typography>
       </Grid>
     </Grid>
   );

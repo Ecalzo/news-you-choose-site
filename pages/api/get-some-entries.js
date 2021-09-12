@@ -18,8 +18,9 @@ const handler = async (req, res) => {
     SELECT id, title, content, src, url, sentiment, score, user_approve, user_disapprove, date, image_url
     FROM news
     WHERE sentiment = ?
-    AND date > DATE_ADD(?, INTERVAL -10 DAY)
+    AND date between DATE_ADD(?, INTERVAL -10 DAY) and ?
     AND score > 60
+    ORDER BY date DESC
     LIMIT 20
     `;
     } else {
@@ -27,12 +28,13 @@ const handler = async (req, res) => {
       SELECT id, title, content, src, url, sentiment, score, user_approve, user_disapprove, date, image_url
       FROM news
       WHERE sentiment = ?
-      AND date > DATE_ADD(?, INTERVAL -10 DAY)
-      AND score > 85
+      AND date between DATE_ADD(?, INTERVAL -10 DAY) and ?
+      AND score > 95
+      ORDER BY date DESC
       LIMIT 20
       `;
     }
-    const results = await query(sqlQuery, [sentiment, date]);
+    const results = await query(sqlQuery, [sentiment, date, date]);
 
     return res.json(results);
   } catch (e) {

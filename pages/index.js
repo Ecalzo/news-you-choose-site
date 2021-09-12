@@ -10,6 +10,7 @@ import { getCurrentDate } from "../lib/get-current-date";
 import Grid from "@material-ui/core/Grid";
 import SkeletonArticles from "../components/skeleton-articles";
 import { getSkeleArticles } from "../lib/create-skele-articles";
+import { v4 as uuidv4 } from "uuid";
 
 const useStyles = makeStyles((theme) => ({
   marginAutoContainer: {
@@ -24,7 +25,21 @@ export default function Home() {
   const classes = useStyles();
   const [sentiment, setSentiment] = React.useState(1);
   const [date, setDate] = React.useState(currentDate);
+  const [uuid, setUuid] = usePersistedState("uuid", uuidv4());
   const { articles, isLoading } = useArticles({ sentiment, date });
+
+  function usePersistedState(key, defaultValue) {
+    let state, setState;
+    if (typeof window !== "undefined") {
+      [state, setState] = React.useState(
+        () => JSON.parse(window.localStorage.getItem(key)) || defaultValue
+      );
+    }
+    React.useEffect(() => {
+      window.localStorage.setItem(key, JSON.stringify(state));
+    }, [key, state]);
+    return [state, setState];
+  }
 
   if (isLoading) {
     return (
@@ -65,7 +80,7 @@ export default function Home() {
             <FilterMenu setSentiment={setSentiment} setDate={setDate} />
           </Grid>
           <Grid item xs={12}>
-            <Articles articles={articles} />
+            <Articles articles={articles} uuid={uuid} />
           </Grid>
         </Grid>
       </Container>

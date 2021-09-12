@@ -6,12 +6,13 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import ThumbUpIcon from "@material-ui/icons/ThumbUp";
-import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import IconButton from "@material-ui/core/IconButton";
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import AlertDialog from "./alert-dialog";
 import Grid from "@material-ui/core/Grid";
+import AddIcon from "@material-ui/icons/Add";
+import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+import RemoveIcon from "@material-ui/icons/Remove";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -24,13 +25,19 @@ export default function ImgMediaCard({
   content,
   url,
   src,
+  date,
   image_url,
+  uuid,
   onError,
 }) {
   const classes = useStyles();
   const [upvote, setUpvote] = usePersistedState("upvoteState" + id, false);
   const [downvote, setDownvote] = usePersistedState(
     "downvoteState" + id,
+    false
+  );
+  const [neutvote, setNeutvote] = usePersistedState(
+    "neutvoteState" + id,
     false
   );
 
@@ -70,24 +77,40 @@ export default function ImgMediaCard({
           >
             {content.length > 100 ? content.slice(0, 100) + "..." : content}
           </Typography>
-          <Typography variant="body2">
+          <Typography gutterBottom variant="body2">
             {src.split(".").slice(-2)[0].toUpperCase()}
+          </Typography>
+          <Typography align="right" variant="caption">
+            {date.slice(0, 10)}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Grid container spacing={2}>
           <Grid item md={2} sm={2} xs={3}>
-            <IconButton onClick={handleUpvote}>
-              <ThumbUpIcon color={upvote ? "primary" : "action"} />
+            <IconButton onClick={handleDownvote}>
+              <Tooltip title="Negative">
+                <RemoveIcon color={downvote ? "primary" : "action"} />
+              </Tooltip>
             </IconButton>
           </Grid>
           <Grid item md={2} sm={2} xs={3}>
-            <IconButton onClick={handleDownvote}>
-              <ThumbDownIcon color={downvote ? "primary" : "action"} />
+            <IconButton onClick={handleNeutvote}>
+              <Tooltip title="Neutral">
+                <RadioButtonUncheckedIcon
+                  color={neutvote ? "primary" : "action"}
+                />
+              </Tooltip>
             </IconButton>
           </Grid>
-          <Grid item md={6} sm={6} xs={3}>
+          <Grid item md={2} sm={2} xs={3}>
+            <IconButton onClick={handleUpvote}>
+              <Tooltip title="Positive">
+                <AddIcon color={upvote ? "primary" : "action"} />
+              </Tooltip>
+            </IconButton>
+          </Grid>
+          <Grid item md={4} sm={4} xs={0}>
             {" "}
           </Grid>
           <Grid item md={2} sm={2} xs={3}>
@@ -100,121 +123,106 @@ export default function ImgMediaCard({
     </Card>
   );
 
-  async function handleUpvote(e) {
-    if (upvote === true) {
-      try {
-        const res = await fetch("/api/downvote-entry", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id,
-          }),
-        });
-        const json = await res.json();
-        if (!res.ok) throw Error(json.message);
-      } catch (e) {
-        throw Error(e.message);
-      }
+  async function deleteExistingVotes() {
+    if (upvote) {
+      await fetch(`/api/delete-vote?uuid=${uuid}&article_id=${id}`, {
+        method: "DELETE",
+      });
       setUpvote(false);
-    } else if (downvote == true) {
-      try {
-        for (let i = 0; i < 2; i++) {
-          const res = await fetch("/api/upvote-entry", {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              id,
-            }),
-          });
-          const json = await res.json();
-          if (!res.ok) throw Error(json.message);
-        }
-      } catch (e) {
-        throw Error(e.message);
-      }
-      setUpvote(true);
+    } else if (downvote) {
+      await fetch(`/api/delete-vote?uuid=${uuid}&article_id=${id}`, {
+        method: "DELETE",
+      });
       setDownvote(false);
-    } else {
-      try {
-        const res = await fetch("/api/upvote-entry", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id,
-          }),
-        });
-        const json = await res.json();
-        if (!res.ok) throw Error(json.message);
-      } catch (e) {
-        throw Error(e.message);
-      }
-      setUpvote(true);
-      setDownvote(false);
+    } else if (neutvote) {
+      await fetch(`/api/delete-vote?uuid=${uuid}&article_id=${id}`, {
+        method: "DELETE",
+      });
+      setNeutvote(false);
     }
   }
 
-  async function handleDownvote(e) {
-    if (downvote === true) {
-      try {
-        const res = await fetch("/api/upvote-entry", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id,
-          }),
-        });
-        const json = await res.json();
-        if (!res.ok) throw Error(json.message);
-      } catch (e) {
-        throw Error(e.message);
+  async function handleUpvote() {
+    if (upvote || downvote || neutvote) {
+      await deleteExistingVotes();
+    }
+    // perform the upvote
+    try {
+      const res = await fetch("/api/create-vote", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          uuid: uuid,
+          article_id: id,
+          sentiment: 2, // positive
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        throw Error(json.message);
+      } else {
+        setUpvote(true);
       }
-      setDownvote(false);
-    } else if (upvote == true) {
-      try {
-        for (let i = 0; i < 2; i++) {
-          const res = await fetch("/api/downvote-entry", {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              id,
-            }),
-          });
-          const json = await res.json();
-          if (!res.ok) throw Error(json.message);
-        }
-      } catch (e) {
-        throw Error(e.message);
+    } catch (e) {
+      throw Error(e.message);
+    }
+  }
+
+  async function handleDownvote() {
+    if (upvote || downvote || neutvote) {
+      await deleteExistingVotes();
+    }
+    // perform the downvote
+    try {
+      const res = await fetch("/api/create-vote", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          uuid: uuid,
+          article_id: id,
+          sentiment: 0, // negative
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        throw Error(json.message);
+      } else {
+        setDownvote(true);
       }
-      setDownvote(true);
-      setUpvote(false);
-    } else {
-      try {
-        const res = await fetch("/api/downvote-entry", {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id,
-          }),
-        });
-        const json = await res.json();
-        if (!res.ok) throw Error(json.message);
-      } catch (e) {
-        throw Error(e.message);
+    } catch (e) {
+      throw Error(e.message);
+    }
+  }
+
+  async function handleNeutvote() {
+    if (upvote || downvote || neutvote) {
+      await deleteExistingVotes();
+    }
+    // perform the neutral vote
+    try {
+      const res = await fetch("/api/create-vote", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          uuid: uuid,
+          article_id: id,
+          sentiment: 1, // neutral
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        throw Error(json.message);
+      } else {
+        setNeutvote(true);
       }
-      setDownvote(true);
-      setUpvote(false);
+    } catch (e) {
+      throw Error(e.message);
     }
   }
 }
