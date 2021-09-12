@@ -29,26 +29,27 @@ export default function LineChart({ articles }) {
   };
   const data = {
     labels: labels,
+    maintainAspectRatio: true,
     datasets: [
       {
         label: "NEGATIVE",
         data: articles.map((article) => article.negative),
         fill: false,
-        borderColor: "#FF0000",
+        borderColor: "rgba(255, 99, 132, 0.8)",
         tension: 0.2,
       },
       {
         label: "NEUTRAL",
         data: articles.map((article) => article.neutral),
         fill: false,
-        borderColor: "#36A2EB",
+        borderColor: "rgba(255, 206, 86, 0.8)",
         tension: 0.2,
       },
       {
         label: "POSITIVE",
         data: articles.map((article) => article.positive),
         fill: false,
-        borderColor: "#85ff5f",
+        borderColor: "rgba(54, 162, 235, 0.8)",
         tension: 0.2,
       },
     ],
@@ -56,7 +57,7 @@ export default function LineChart({ articles }) {
 
   return (
     <div>
-      <Line data={data} options={options} width={400} height={350} />
+      <Line data={data} options={options} />
     </div>
   );
 }
