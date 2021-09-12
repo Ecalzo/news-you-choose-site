@@ -29,6 +29,7 @@ export default function LineChart({ articles }) {
   };
   const data = {
     labels: labels,
+    maintainAspectRatio: false,
     datasets: [
       {
         label: "NEGATIVE",
@@ -56,7 +57,7 @@ export default function LineChart({ articles }) {
 
   return (
     <div>
-      <Line data={data} options={options} width={400} height={350} />
+      <Line data={data} options={options} width={100} height={50} />
     </div>
   );
 }
