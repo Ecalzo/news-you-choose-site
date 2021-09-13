@@ -7,9 +7,6 @@ export default function TextOutput({ score, scoreText, probabilities }) {
       <Typography variant="h6" gutterBottom>
         Sentiment Score: {score} {scoreText ? `(${scoreText})` : ""}
       </Typography>
-      <Typography variant="h6" gutterBottom>
-        Probabilities: {probabilities}
-      </Typography>
     </>
   ) : null;
 }
