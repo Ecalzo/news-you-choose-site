@@ -20,6 +20,20 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     marginBottom: theme.spacing(3),
   },
+  responsiveSlides: {
+    position: "relative",
+    paddingBottom: "56.25%",
+    height: 0,
+    overflow: "hidden",
+  },
+  slides: {
+    border: 0,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100% !important",
+    height: "100% !important",
+  },
 }));
 
 export default function About() {
@@ -35,6 +49,22 @@ export default function About() {
       >
         <Grid item xs={12}>
           <Title />
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          align="center"
+          className={classes.marginAutoContainer}
+        >
+          <div className={classes.responsiveSlides}>
+            <iframe
+              src="https://docs.google.com/presentation/d/e/2PACX-1vSVC7Czsm-_FLjUCJ2DcxKMZmqit7kr6l0ki68wWqLaX1HARwsCLGx2olhJGnun_c3msJTXDUhmlTHY/embed?start=false&loop=false&delayms=3000"
+              frameBorder="0"
+              allowFullScreen={true}
+              rm="minimal"
+              className={classes.slides}
+            ></iframe>
+          </div>
         </Grid>
         <Typography gutterBottom variant="h4">
           About
@@ -54,19 +84,37 @@ export default function About() {
         <Typography gutterBottom variant="h4">
           Architecture
         </Typography>
-        <Grid item xs={12} sm={12} className={classes.marginAutoContainer}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          className={classes.marginAutoContainer}
+          align="center"
+        >
           <Image src={OverviewImg} />
         </Grid>
         <Typography gutterBottom variant="h4">
           Detailed View - Lambda Architecture
         </Typography>
-        <Grid item xs={12} sm={12} className={classes.marginAutoContainer}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          className={classes.marginAutoContainer}
+          align="center"
+        >
           <Image src={LambdaImg} />
         </Grid>
         <Typography gutterBottom variant="h4">
           Detailed View - Database ERD
         </Typography>
-        <Grid item xs={12} sm={12} className={classes.marginAutoContainer}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          className={classes.marginAutoContainer}
+          align="center"
+        >
           <Image src={DatabaseImg} />
         </Grid>
         <Typography gutterBottom variant="h4">
