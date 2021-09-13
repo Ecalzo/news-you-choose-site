@@ -23,7 +23,7 @@ export default function PieChart({ pieSlices }) {
 
   return (
     <div>
-      <Pie data={data} width={400} height={350} />
+      <Pie data={data} width={400} height={300} />
     </div>
   );
 }
