@@ -8,6 +8,7 @@ import InfoIcon from "@material-ui/icons/Info";
 import BookIcon from "@material-ui/icons/Book";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 import NavIcon from "./nav-icon";
+import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,19 +23,19 @@ export default function ButtonAppBar() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="transparent" elevation={0}>
+      <AppBar position="sticky" color="transparent" elevation={0}>
         <Toolbar variant="dense">
           <Typography className={classes.title}></Typography>
-          <NavIcon title="News" href="/">
+          <NavIcon href="/">
             <BookIcon fontSize="large" />
           </NavIcon>
-          <NavIcon title="API" href="/query">
+          <NavIcon href="/query">
             <CreateIcon fontSize="large" />
           </NavIcon>
-          <NavIcon title="Stats" href="/stats">
+          <NavIcon href="/stats">
             <EqualizerIcon fontSize="large" />
           </NavIcon>
-          <NavIcon title="About" href="/about">
+          <NavIcon href="/about">
             <InfoIcon fontSize="large" />
           </NavIcon>
         </Toolbar>
