@@ -1,3 +1,4 @@
+import { LocalConvenienceStoreOutlined } from "@material-ui/icons";
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
@@ -23,7 +24,7 @@ export default function BarChartVotes({ votes }) {
     datasets: [
       {
         label: "# of votes",
-        data: votes.map((vote) => vote.counts),
+        data: [votes[0].negative, votes[0].neutral, votes[0].positive],
         backgroundColor: [
           "rgba(255, 99, 132, 0.4)",
           "rgba(255, 206, 86, 0.4)",

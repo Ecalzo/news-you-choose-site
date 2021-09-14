@@ -86,7 +86,7 @@ export default function ImgMediaCard({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           <Grid item md={2} sm={2} xs={3}>
             <IconButton onClick={handleDownvote}>
               <Tooltip title="Negative">

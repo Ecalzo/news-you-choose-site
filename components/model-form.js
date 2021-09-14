@@ -65,7 +65,6 @@ export default function ModelForm() {
               })
                 .then((response) => response.json())
                 .then((data) => {
-                  console.log(data);
                   setScore(data.sentiment);
                   setScoreText(data.sentiment_text);
                   setProbabilities(

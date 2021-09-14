@@ -5,11 +5,11 @@ const handler = async (req, res) => {
     let sqlQuery;
     sqlQuery = `
 		SELECT
-				sentiment, COUNT(sentiment) as counts
-		FROM votes
+				COUNT(IF(sentiment = 0, sentiment, NULL)) AS negative,
+				COUNT(IF(sentiment = 1, sentiment, NULL)) AS neutral,
+				COUNT(IF(sentiment = 2, sentiment, NULL)) AS positive
+    FROM votes
 		WHERE date(created_at) > DATE_ADD(current_date(), INTERVAL - 1 DAY)
-		GROUP BY sentiment
-    ORDER BY sentiment
 		`;
 
     const results = await query(sqlQuery);

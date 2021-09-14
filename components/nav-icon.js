@@ -7,7 +7,6 @@ export default function NavIcon({ title, href, children }) {
   const { asPath } = useRouter();
   return (
     <>
-      <Typography>{title}: </Typography>
       <Link href={href} passHref>
         <IconButton color={asPath === href ? "inherit" : "default"}>
           {children}
