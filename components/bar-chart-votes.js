@@ -3,7 +3,6 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 
 export default function BarChartVotes({ votes }) {
-  console.log(votes);
   const options = {
     title: {
       display: true,
