@@ -31,7 +31,7 @@ export default function Stats() {
   const { articles, isLoading } = useStats({ date });
   const { votes, isVotesLoading, isValidating, mutateFunc } = useVotes();
 
-  setTimeout(mutateFunc, 5000);
+  setTimeout(mutateFunc, 2000);
 
   if (isLoading) {
     return (
