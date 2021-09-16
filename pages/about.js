@@ -11,6 +11,7 @@ import Image from "next/image";
 import OverviewImg from "../public/images/Overview_News_You_Choose.png";
 import LambdaImg from "../public/images/Detailed_View_News_You_Choose_Lambda.png";
 import DatabaseImg from "../public/images/Database_ERD.png";
+import ModelImg from "../public/images/Detailed_View_Model_Structure.jpg";
 
 const useStyles = makeStyles((theme) => ({
   marginAutoContainer: {
@@ -104,6 +105,18 @@ export default function About() {
           align="center"
         >
           <Image src={LambdaImg} />
+        </Grid>
+        <Typography gutterBottom variant="h4">
+          Detailed View - Model Architecture
+        </Typography>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          className={classes.marginAutoContainer}
+          align="center"
+        >
+          <Image src={ModelImg} />
         </Grid>
         <Typography gutterBottom variant="h4">
           Detailed View - Database ERD
