@@ -40,7 +40,7 @@ export default function Stats() {
           <title>News You Choose</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Container>
+        <Container maxWidth="md">
           <Grid container spacing={5} alignContent="center">
             <Grid item xs={12}>
               <Title />
@@ -65,7 +65,7 @@ export default function Stats() {
         <title>News You Choose</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container>
+      <Container maxWidth="md">
         <Grid container spacing={5} alignContent="center">
           <Grid item xs={12}>
             <Title />

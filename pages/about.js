@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 export default function About() {
   const classes = useStyles();
   return (
-    <Container>
+    <Container maxWidth="md">
       <Grid
         container
         spacing={3}
