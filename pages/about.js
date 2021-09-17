@@ -68,21 +68,6 @@ export default function About() {
           </div>
         </Grid>
         <Typography gutterBottom variant="h4">
-          About
-        </Typography>
-        <Grid item xs={12} className={classes.marginAutoContainer}>
-          <Typography gutterBottom variant="body1" component="h2">
-            The goal of New You Choose is to train machine learning models to
-            accurately predict the category of a news article based on the
-            article body and other context clues. Additionally, this project
-            intends to provide a front-end web interface for users to interact
-            with stories by requesting more positive or more negative new
-            stories. Users will also be able to assist the model by verifying if
-            the recommendation is accurate - this will be used in future
-            training to fine tune the models.
-          </Typography>
-        </Grid>
-        <Typography gutterBottom variant="h4">
           Architecture
         </Typography>
         <Grid
