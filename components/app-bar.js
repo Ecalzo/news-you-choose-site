@@ -9,6 +9,7 @@ import BookIcon from "@material-ui/icons/Book";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 import NavIcon from "./nav-icon";
 import { Grid } from "@material-ui/core";
+import AlertBanner from "./alert-banner";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +41,7 @@ export default function ButtonAppBar() {
           </NavIcon>
         </Toolbar>
       </AppBar>
+      <AlertBanner />
     </div>
   );
 }
